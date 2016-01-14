@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id          :integer          not null, primary key
+#  car_id      :integer
+#  customer_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+de:
+  activerecord:
+    models:
+      order_car:
+        one: Verkauf
+        other: Verkäufe
+    attributes:
+      order_car:
+        chassi: Chassi
+        country: Land
+        car_template_id: Fahrzeugmuster ID
+        customer_id: Kunden ID
+        bought_by: Vermittlung durch
+        created_at: Angelegt am
+        updated_at: Aktualisiert am    
+

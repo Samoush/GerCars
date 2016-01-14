@@ -1,0 +1,6 @@
+
+<h1 class='title'>Fahrzeug verkauft</h1>
+<%= simple_form_for @order_car do |f| %>
+  <%= render partial:'form', locals:{ f:f } %>
+<% end %>
+<%= link_to 'Zurück', order_cars_path %>

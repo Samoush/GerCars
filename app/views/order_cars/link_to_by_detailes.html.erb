@@ -1,0 +1,8 @@
+<h1 class='title'>Detallierte Suche</h1>
+<%= simple_form_for :order_car do |f| %>
+  <%= f.input :chassi, placeholder: 'Chassi' %>
+  <%= f.simple_fields_for :car_template do |template_form| %>
+    <%= template_form.collection_select(:car_template_id, CarTemplate.all, :id, :model, prompt: true) %>
+  <% end %>  
+  <%= f.button :submit, 'Verkauf Suchen' %>
+<% end %>  

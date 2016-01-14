@@ -1,0 +1,7 @@
+
+<%= f.input :chassi, placeholder: 'Chassi Nr. (Die letzten 6 Ziffern)' %>
+<%= f.input :bought_by, placeholder: 'Vermittlung durch' %>
+<%= f.select :country, options_for_select([["Spanien", "Spanien"], ["Italien", "Italien"], ["Tschechien", "Tschechien"], ["Polen", "Poleb"], ["Deutschland", "Deutschland"]])  %>
+<%= f.collection_select(:car_template_id, CarTemplate.all, :id, :model, prompt: true) %>
+<%= f.collection_select(:customer_id, Customer.all, :id, :name, prompt: true) %>
+<%= f.button :submit, 'Verkauf Bestätigen' %> 

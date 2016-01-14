@@ -1,0 +1,42 @@
+
+<h1 class='title'>letzte Verkäufe</h1>  
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Marke</th>
+      <th>Modell</th>
+      <th>Chassi</th>
+      <th>Land</th>
+      <th>Vermittlung</th>
+      <th colspan="3"></th>
+    </tr>  
+  </thead>
+  
+  <tbody>  
+    <% order_c = OrderCar.sort_by_created_at %>
+    <% order_c.take(10).each do |order_car| %>  
+      <% car_template = CarTemplate.find(order_car.car_template_id) %>
+      <% customer = Customer.find(order_car.customer_id) %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= car_template.brand %></td>
+        <td><%= car_template.model %></td>
+        <td><%= order_car.chassi %></td>
+        <td><%= order_car.country %></td>
+        <td><%= order_car.bought_by %></td>
+        <td><%= link_to 'Bearbeiten', edit_order_car_path(id: order_car) %></td>
+        <td><%= link_to 'Löschen', order_car, method: :delete, data: { confirm: 'Sind Sie sich sicher?' } %></td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>      
+</br>
+
+<%= link_to 'Auto Verkauft', new_order_car_path %>  
+
+
+
+
+

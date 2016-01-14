@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: competitor_cars
+#
+#  id               :integer          not null, primary key
+#  competitor_name  :string(255)
+#  auction          :string(255)
+#  car_template_id  :integer
+#  sold_car_notices :text(65535)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  sold_date        :datetime
+#
+
+de:
+  activerecord:
+    models:
+      competitor_car:
+        one: Konkurrenzkauf
+        other: Konkurrenzkäufe
+    attributes:
+      competitor_car:
+        competitor_name: Name des Konkurrenten
+        auction: Auktion
+        car_template_id: Fahrzeugmuster ID
+        sold_car_notices: Beschreibung zum Fahrzeug
+        sold_date: Verkaufsdatum
+        created_at: Angelegt am
+        updated_at: Aktualisiert am
+
+
+

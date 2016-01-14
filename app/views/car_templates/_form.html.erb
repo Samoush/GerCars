@@ -1,0 +1,6 @@
+<%= simple_form_for @car_template do |f| %>
+  <%= f.input :brand, placeholder: 'Marke' %>
+  <%= f.input :model, placeholder: 'Modell' %>
+  <%= f.input :general_chassi, placeholder: 'Allgemeiner Chassi-Teil' %>
+  <%= f.button :submit, 'Fahrzeugmuster Bestätigen' %>
+<% end %>  

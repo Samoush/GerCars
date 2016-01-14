@@ -1,0 +1,10 @@
+<%= simple_form_for @competitor_car do |f| %>
+  <%= f.input :competitor_name, placeholder: 'Name des Konkurrenten'%>
+  <%= f.input :auction, placeholder: 'Name der Auktion' %>
+  <%= f.collection_select(:car_template_id, CarTemplate.all, :id, :model, prompt: true) %>
+  <%= f.date_select :sold_date %>
+  <%= f.text_area :sold_car_notices, placeholder: 'Anmerkungen/weitereführende Beschreibung zum Fahrzeug' %>
+  <%= f.button :submit, 'Konkurrenzkauf Bestätigen' %>
+<% end %>  
+
+

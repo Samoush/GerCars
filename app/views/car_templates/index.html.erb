@@ -1,0 +1,28 @@
+
+<h1 class='title'>Ihre Fahrzeugmuster</h1> 
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Marke</th>
+      <th>Modell</th>
+      <th>Allgemeiner Chassi</th>
+      <th colspan="3"></th>
+    </tr>  
+  </thead>
+  
+  <tbody>  
+    <% @car_templates.each do |template| %>
+      <tr>
+        <td><%= template.brand %></td>
+        <td><%= template.model %></td>
+        <td><%= template.general_chassi %></td>
+        <td><%= link_to 'Bearbeiten', edit_car_template_path(id: template) %></td>
+        <td><%= link_to 'Löschen', car_template_path(id: template), method: :delete, data: { confirm: 'Sind Sie sich sicher?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>      
+</br>
+<%= link_to 'Neues Muster', new_car_template_path %>  
+

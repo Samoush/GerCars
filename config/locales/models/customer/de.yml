@@ -1,0 +1,11 @@
+
+de:
+  activerecord:
+    models:
+      customer:
+        one: Kunde
+        other: Kunden
+    attributes:
+      customer:
+        name: Name
+ 
