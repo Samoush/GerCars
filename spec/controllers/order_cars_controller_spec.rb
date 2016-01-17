@@ -17,6 +17,7 @@ require 'rails_helper'
 
 RSpec.describe OrderCarsController, type: :controller do
   render_views
+  let(:oc) { OrderCar.first }
 
   def find_order_car(id)
     order_car = OrderCar.find(id)
@@ -62,15 +63,46 @@ RSpec.describe OrderCarsController, type: :controller do
     #end  
   end
 
-  describe 'GET #index' do
-
-    it 'creates an order_car' do
-      oc = FactoryGirl.create(:order_car)
-      
+  describe 'GET #index #new' do
+    it 'creates an order_car #index' do
       get :index
       expect(response).to render_template(:index)
-      expect(response.body).to have_content(oc.chassi) 
       expect(response).to have_http_status(200)
     end
-  end  
+
+    it 'renders succesfully #new' do
+      get :new
+      expect(response).to render_template(:new)
+      expect(response).to render_template('_form')
+      expect(response).to have_http_status(:success)
+    end  
+  end 
+
+  describe 'GET #edit' do
+    before(:each) { get :edit, id: oc.id}
+
+    it 'should be successfully' do
+      expect(response).to be_success
+    end  
+
+    it 'should be successfully rendered' do
+      expect(response).to render_template(:edit)
+      expect(response).to render_template('_form')
+      expect(response).to have_http_status(:success)
+      #expect(response).to have_content(oc.chassi)
+    end  
+  end
+
+  describe 'GET #show' do
+    before (:each) { get :show, id: oc.id }
+
+    it 'should be success' do
+      expect(response).to be_success
+    end  
+
+    it 'should be successfully' do
+      expect(response).to render_template(:show)
+      expect(response).to have_http_status(:success)
+    end  
+  end
 end  

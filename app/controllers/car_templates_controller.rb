@@ -1,6 +1,3 @@
-class CarTemplatesController < ApplicationController
-  before_action :set_car_template, only: [:destroy, :edit, :update]
- 
 # == Schema Information
 #
 # Table name: car_templates
@@ -12,6 +9,10 @@ class CarTemplatesController < ApplicationController
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
+
+class CarTemplatesController < ApplicationController
+  before_action :set_car_template, only: [:destroy, :edit, :update]
+
   def index
     @car_templates = CarTemplate.all
   end

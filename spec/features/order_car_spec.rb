@@ -2,39 +2,64 @@ require 'rails_helper'
 
 RSpec.feature 'OrderCar' do
 #describe "creating and viewing new order_cars (sells)", type: :feature do
+let (:oc) { OrderCar.first }
 
-  it "creates a new order_car" do
-    visit 'order_cars/new'
-    fill_in 'order_car_chassi', with: '231442'
-    fill_in 'order_car_bought_by', with: 'MUC'
-    select 'Deutschland', from: 'order_car_country'
-    select 'Octavia', from: 'order_car_car_template_id'
-    select 'Samer', from: 'order_car_customer_id'       
-    click_button 'Verkauf Bestätigen'
+  describe '#new' do
+    it "creates a new order_car" do
+      visit 'order_cars/new'
+      fill_in 'order_car_chassi', with: '231442'
+      fill_in 'order_car_bought_by', with: 'MUC'
+      select 'Deutschland', from: 'order_car_country'
+      select 'Octavia', from: 'order_car_car_template_id'
+      select 'Samer', from: 'order_car_customer_id'       
+      click_button 'Verkauf Bestätigen'
 
-    expect(page).to have_content '231442'       
-  end 
-
-  it 'searches for specific order_car by chassi' do
-
-    visit 'order_cars/search/by_chassi'
-    fill_in 'order_car_chassi', with: '123456'
-    click_button('Verkauf Suchen')
-
-    expect(page).to have_content('Fahrzeug gefunden')
-    expect(page).to have_content('123456')
+      expect(page).to have_content '231442'       
+    end 
   end  
 
-  it 'searches for specific order_car by chassi and model' do
+  describe '#searches order_cars' do
+    it 'searches for specific order_car by chassi' do
 
-    visit 'order_cars/search/detailed'
-    fill_in 'order_car_chassi', with: '123456'
-    select 'Octavia', from: 'order_car_car_template_car_template_id'
-    click_button 'Verkauf Suchen'
+      visit 'order_cars/search/by_chassi'
+      fill_in 'order_car_chassi', with: '123456'
+      click_button('Verkauf Suchen')
 
-    expect(page).to have_content('Fahrzeug gefunden')
-    expect(page).to have_content('123456')
-  end  
+      expect(page).to have_content('Fahrzeug gefunden')
+      expect(page).to have_content('123456')
+    end  
+
+    it 'searches for specific order_car by chassi and model' do
+
+      visit 'order_cars/search/detailed'
+      fill_in 'order_car_chassi', with: '123456'
+      select 'Octavia', from: 'order_car_car_template_car_template_id'
+      click_button 'Verkauf Suchen'
+
+      expect(page).to have_content('Fahrzeug gefunden')
+      expect(page).to have_content('123456')
+    end  
+  end
+
+
+#  describe '#edit' do
+#    it 'edits a order_car and redirects to index' do
+#      visit edit_competitor_car_path(oc.id)
+#      fill_in 'order_car_chassi', with: '111111'
+#
+#      click_button 'Verkauf Bestätigen'
+#
+#      expect(page).to have_content('111111') 
+#    end
+#  end
+
+#  describe '#show' do
+#    it 'selects and views a competitor_car with all its attributes' do
+#      visit competitor_car_path(oc.id)
+#
+#      expect(page).to have_content('111111')
+#    end   
+#  end  
 
 
 
