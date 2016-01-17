@@ -1,16 +1,15 @@
 class OrderCarsController < ApplicationController
+  before_action :set_order_car, only: [:show, :edit, :update, :destroy]
 
   def index
     @order_cars = OrderCar.all              
   end  
 
   def show 
-    @order_car = OrderCar.find(params[:id])
   end  
 
   def new
     @order_car = OrderCar.new
-
   end 
 
   def create
@@ -24,13 +23,9 @@ class OrderCarsController < ApplicationController
   end
 
   def edit
-    @order_car = OrderCar.find(params[:id])
-    @car_templates = CarTemplate.find(@order_car.car_template_id)
   end
   
   def update
-    @order_car = OrderCar.find(params[:id])
-
     if @order_car.update_attributes(order_car_params)
       flash[:notice] = "Fahrzeug Aktualisiert"
       redirect_to (order_cars_path)                 
@@ -40,7 +35,6 @@ class OrderCarsController < ApplicationController
   end  
 
   def destroy 
-    @order_car = OrderCar.find(params[:id])
     @order_car.destroy
     respond_to do |format|
       format.html { redirect_to order_cars_path, notice: 'Fahrzeug gelöscht' }
@@ -82,6 +76,10 @@ class OrderCarsController < ApplicationController
   end  
 
   private
+
+  def set_order_car
+    @order_car = OrderCar.find(params[:id])
+  end  
 
   def order_car_params
     params.require(:order_car).permit(:chassi, :customer_id, :car_template_id, :country, :created_at, :updated_at, :bought_by)

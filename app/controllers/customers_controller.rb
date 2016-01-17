@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :set_customer, only: [:edit, :destroy, :update]
 
   def new
     @customer = Customer.new
@@ -11,7 +12,6 @@ class CustomersController < ApplicationController
   def create 
     @customer = Customer.new(customer_params)
     #@customer.update_attribute(:name, set_capital_letter(params[:name]))
-    
     if @customer.save
       flash[:notice] = "Kunde erfolgreich angelegt"             #flash[:succes] => wenn ich eine rot farbene einblendung möchte
       redirect_to (customers_url)                   
@@ -21,7 +21,6 @@ class CustomersController < ApplicationController
   end  
 
   def destroy
-    @customer = Customer.find(params[:id])
     @customer.destroy
     respond_to do |format|
       format.html { redirect_to customers_url, notice: 'Kunde gelöscht' }
@@ -30,12 +29,9 @@ class CustomersController < ApplicationController
   end  
 
   def edit
-    @customer = Customer.find(params[:id])
   end  
 
   def update
-    @customer = Customer.find(params[:id])
-
     if @customer.update_attributes(customer_params)
       flash[:success] = "Kundendaten aktualisiert"
       redirect_to (customers_url)                 
@@ -45,8 +41,6 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @customer = Customer.find(params[:id])
-
     @customer.destroy
     respond_to do |format|
       format.html { redirect_to customers_url, notice: 'Kunde gelöscht' }
@@ -55,6 +49,10 @@ class CustomersController < ApplicationController
   end  
 
   private
+
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end  
 
   def customer_params
     params.require(:customer).permit(:name, :created_at, :updated_at)

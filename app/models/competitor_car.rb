@@ -21,6 +21,6 @@ class CompetitorCar < ActiveRecord::Base
 
   def self.give_the_last_ten
     competitor_cars = CompetitorCar.find_each.sort_by{ |comp| comp.created_at }.reverse.take(10)
-    competitor_cars       #evtl tap?
+    competitor_cars       
   end  
 end

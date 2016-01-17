@@ -26,11 +26,11 @@ RSpec.describe CompetitorCarsController, type: :controller do
     #  expect(response).to have_http_status(:success)
     #end 
 
-    it 'should be successfully rendered #show' do
-      get :show, competitor_car: { id: CompetitorCar.find(1) }
-      expect(response).to render_template('competitor_cars/show')
-      expect(response).to have_http_status(:success)
-    end 
+    #it 'should be successfully rendered #show' do
+    #  get :show, competitor_car: { id: CompetitorCar.find(1) }
+    #  expect(response).to render_template('competitor_cars/show')
+    #  expect(response).to have_http_status(:success)
+    #end 
   end
 
   describe 'GET #show' do
@@ -41,6 +41,28 @@ RSpec.describe CompetitorCarsController, type: :controller do
       it 'should be successfully' do
         expect(response).to be_success
       end 
+
+      it 'should be succesfully rendered' do
+        expect(response).to render_template('competitor_cars/show')
+        expect(response).to have_http_status(:success)
+      end  
     end
   end
+
+  describe 'GET #edit' do
+    context 'when request an existing CompetitorCar' do
+      let(:competitor_car) { competitor_cars[rand(2)] }
+      before(:each) { get :edit, id: competitor_car.id }
+
+      it 'should be successfully' do
+        expect(response).to be_success
+      end
+
+      it 'should be successfully rendered' do
+        expect(response).to render_template('competitor_cars/edit')
+        expect(response).to render_template('_form')
+        expect(response).to have_http_status(:success)
+      end  
+    end
+  end   
 end    

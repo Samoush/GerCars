@@ -13,7 +13,7 @@
 #
 
 class CompetitorCarsController < ApplicationController
-  before_action :set_competitor_car, only: [:show, :edit, :update, :destroy]
+  before_action :set_competitor_car, only: [:edit, :update, :destroy]
 
   def index
     @competitor_cars = CompetitorCar.give_the_last_ten            #brauche ich eigentlich nicht, weil schon im model gemacht wird
@@ -24,11 +24,10 @@ class CompetitorCarsController < ApplicationController
   end
 
   def show
-    
+    @competitor_car = CompetitorCar.find(params[:id])
   end 
 
   def edit
-    
   end
   
   def create  
@@ -43,7 +42,6 @@ class CompetitorCarsController < ApplicationController
   end
 
   def update
-
     if @competitor_car.update_attributes(competitor_car_params)
       flash[:notice] = "Konkurrenzkauf aktualisiert"
       redirect_to (competitor_cars_url)
@@ -52,8 +50,7 @@ class CompetitorCarsController < ApplicationController
     end  
   end  
 
-  def destroy
-    
+  def destroy 
     @competitor_car.destroy
     respond_to do |format|
       format.html { redirect_to competitor_cars_url, notice: 'Konkurrenzkauf gelöscht' }

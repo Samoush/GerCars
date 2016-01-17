@@ -21,6 +21,7 @@
         <td><%= car_template.model %></td>
         <td><%= cc.sold_date.strftime('%d.%m.%Y') %></td>       
         <td><%= cc.sold_car_notices %></td>
+        <td><%= link_to 'Zeige vollständig', competitor_car_path(id: cc) %>
         <td><%= link_to 'Bearbeiten', edit_competitor_car_path(id: cc) %></td>
         <td><%= link_to 'Löschen', competitor_car_path(id: cc, method: :delete, data: { confirm: 'Sind Sie sich sicher?' }) %></td>
       </tr>

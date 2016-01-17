@@ -8,8 +8,8 @@ RSpec.feature 'OrderCar' do
     fill_in 'order_car_chassi', with: '231442'
     fill_in 'order_car_bought_by', with: 'MUC'
     select 'Deutschland', from: 'order_car_country'
-    select 'Octavia', from: 'order_car_car_template_id' #all('order_car_car_template_id').sample.select_option  #select 'Skoda', from: 'order_car_car_template_id' #car_template_id
-    select 'Samer', from: 'order_car_customer_id'       #customer_id    #all('order_car_car_template_id')[2].select_option      
+    select 'Octavia', from: 'order_car_car_template_id'
+    select 'Samer', from: 'order_car_customer_id'       
     click_button 'Verkauf Bestätigen'
 
     expect(page).to have_content '231442'       

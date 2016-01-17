@@ -1,4 +1,5 @@
 class CarTemplatesController < ApplicationController
+  before_action :set_car_template, only: [:destroy, :edit, :update]
  
 # == Schema Information
 #
@@ -30,12 +31,9 @@ class CarTemplatesController < ApplicationController
   end  
 
   def edit
-    @car_template = CarTemplate.find(params[:id])
   end  
 
   def update
-    @car_template = CarTemplate.find(params[:id])
-
     if @car_template.update_attributes(car_template_params)
       flash[:notice] = "Fahrzeugmuster Aktualisiert"
       redirect_to (car_templates_url)                 
@@ -45,7 +43,6 @@ class CarTemplatesController < ApplicationController
   end   
 
   def destroy
-    @car_template = CarTemplate.find(params[:id])
     @car_template.destroy
     respond_to do |format|
       format.html { redirect_to car_templates_url, notice: 'Fahrzeugmuster gelöscht' }
@@ -54,6 +51,10 @@ class CarTemplatesController < ApplicationController
   end 
   #Das Tätigkeitsfeld der Informatik hat es mir angetan, vor allem die Webentwicklung.
   private
+
+  def set_car_template
+    @car_template = CarTemplate.find(params[:id])
+  end  
 
   def car_template_params
     params.require(:car_template).permit(:brand, :model, :general_chassi, :created_at, :updated_at)

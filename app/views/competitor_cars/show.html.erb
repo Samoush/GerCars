@@ -19,7 +19,7 @@
       <td><%= @competitor_car.competitor_name %></td>
       <td><%= @competitor_car.auction %></td>
       <td><%= car_template.model %></td>
-      <td><%= @competitor_car.sold_date %></td>
+      <td><%= @competitor_car.sold_date.strftime('%d.%m.%Y') %></td>
       <td><%= @competitor_car.sold_car_notices %></td>
       <td><%= link_to 'Bearbeiten', edit_competitor_car_path(id: @competitor_car) %></td>
       <td><%= link_to 'Löschen', competitor_car_path(id: @competitor_car, method: :delete, data: { confirm: 'Sind Sie sich sicher?' }) %></td>
