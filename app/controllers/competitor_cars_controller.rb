@@ -16,7 +16,7 @@ class CompetitorCarsController < ApplicationController
   before_action :set_competitor_car, only: [:show, :edit, :update, :destroy]
 
   def index
-    @competitor_cars = CompetitorCar.all
+    @competitor_cars = CompetitorCar.give_the_last_ten            #brauche ich eigentlich nicht, weil schon im model gemacht wird
   end  
 
   def new

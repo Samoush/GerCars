@@ -2,10 +2,10 @@
 
 Die GerCars Plattform bietet
 
-# Anwendern Fahrzeugkäufe persistent zu speichern;
-# Anwendern eventuelle Käufe der Konkurrenz zu registrieren;
+# Anwendern die Möglichkeit Fahrzeugkäufe persistent zu speichern;
+# Anwendern die Möglichkeit eventuelle Käufe der Konkurrenz zu registrieren;
 # Anwendern gekaufte Fahrzeuge nach Chassi und detallierter in der DB zu suchen;
-# Anwendern die Möglichkeit der Analyse ihrer Käufe.
+# Anwendern die Möglichkeit der Analyse ihrer Fahrzeug-Käufe.
 
 ## Benötigte Libraries
 
@@ -18,4 +18,4 @@ bundle install
 bundle exec rake db:migrate
 bundle exec rake data:examples
 ```
-Der letzte Befehl erstellt eine Menge an Beispieldaten, welche auch in der Anwednung zum Tragen kommen.
+Der letzte Befehl erstellt eine Menge an Beispieldaten.

@@ -13,17 +13,20 @@
   </thead>
   
   <tbody>  
-    <tr>
-      <% @competitor_cars.each do |cc| %>
-      <% car_template = CarTemplate.find(cc.car_template_id) %>
-      <td><%= cc.name %></td>
-      <td><%= cc.auction %></td>
-      <td><%= car_template.model %></td>
-      <td><%= cc.sold_date %></td>
-      <td><%= cc.sold_car_notices %></td>
-      <td><%= link_to 'Bearbeiten', edit_competitor_car_path(id: cc) %></td>
-      <td><%= link_to 'Löschen', competitor_car_path(id: cc, method: :delete, data: { confirm: 'Sind Sie sich sicher?' }) %></td>
-    </tr>
+    <% @competitor_cars.each do |cc| %>
+    <% car_template = CarTemplate.find(cc.car_template_id) %>
+      <tr>
+        <td><%= cc.competitor_name %></td>
+        <td><%= cc.auction %></td>
+        <td><%= car_template.model %></td>
+        <td><%= cc.sold_date.strftime('%d.%m.%Y') %></td>       
+        <td><%= cc.sold_car_notices %></td>
+        <td><%= link_to 'Bearbeiten', edit_competitor_car_path(id: cc) %></td>
+        <td><%= link_to 'Löschen', competitor_car_path(id: cc, method: :delete, data: { confirm: 'Sind Sie sich sicher?' }) %></td>
+      </tr>
+    <% end %>  
   </tbody>
-</table>      
+</table>   
+</br>
+<%= link_to 'Neuer Konkurrenzkauf', new_competitor_car_path %>   
 </br>

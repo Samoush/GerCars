@@ -2,7 +2,7 @@
   <%= f.input :competitor_name, placeholder: 'Name des Konkurrenten'%>
   <%= f.input :auction, placeholder: 'Name der Auktion' %>
   <%= f.collection_select(:car_template_id, CarTemplate.all, :id, :model, prompt: true) %>
-  <%= f.date_select :sold_date %>
+  <%= f.date_select :sold_date %> <p id='sold_date_new_competitor_car'> Verkaufsdatum </p> 
   <%= f.text_area :sold_car_notices, placeholder: 'Anmerkungen/weitereführende Beschreibung zum Fahrzeug' %>
   <%= f.button :submit, 'Konkurrenzkauf Bestätigen' %>
 <% end %>  

@@ -16,7 +16,7 @@
   <tbody>  
     <tr>
       <% car_template = CarTemplate.find(@competitor_car.car_template_id) %>
-      <td><%= @competitor_car.name %></td>
+      <td><%= @competitor_car.competitor_name %></td>
       <td><%= @competitor_car.auction %></td>
       <td><%= car_template.model %></td>
       <td><%= @competitor_car.sold_date %></td>

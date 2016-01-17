@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CompetitorCarsController, type: :controller do
+  render_views
   let(:competitor_cars) { FactoryGirl.create_list(:competitor_car, 2) }
 
   describe 'GET #index #new #edit' do
@@ -25,11 +26,11 @@ RSpec.describe CompetitorCarsController, type: :controller do
     #  expect(response).to have_http_status(:success)
     #end 
 
-    #it 'should be successfully rendered #show' do
-    #  get :show, competitor_car: { id: CompetitorCar.find(1) }
-    #  expect(response).to render_template('competitor_cars/show')
-    #  expect(response).to have_http_status(:success)
-    #end 
+    it 'should be successfully rendered #show' do
+      get :show, competitor_car: { id: CompetitorCar.find(1) }
+      expect(response).to render_template('competitor_cars/show')
+      expect(response).to have_http_status(:success)
+    end 
   end
 
   describe 'GET #show' do

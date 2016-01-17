@@ -19,4 +19,8 @@ class CompetitorCar < ActiveRecord::Base
   validates :auction, presence: true
   validates :car_template_id, presence: true
 
+  def self.give_the_last_ten
+    competitor_cars = CompetitorCar.find_each.sort_by{ |comp| comp.created_at }.reverse.take(10)
+    competitor_cars       #evtl tap?
+  end  
 end
