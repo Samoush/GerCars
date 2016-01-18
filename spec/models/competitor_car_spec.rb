@@ -47,6 +47,14 @@ RSpec.describe CompetitorCar, type: :model do
       expect(ordered_cc[0].created_at).to be > ordered_cc[ordered_cc.size-1].created_at
       expect(ordered_cc[0].created_at).to be > ordered_cc[ordered_cc.size/2].created_at
     end  
+
+    it 'filters the right competitor_car, searched by chassi' do
+      competitor_car = CompetitorCar.first
+      found_competitor_car = CompetitorCar.find_by_chassi(competitor_car.chassi)
+      ap found_competitor_car
+      expect(found_competitor_car.size == 1).to be true
+      expect(competitor_car.chassi).to eq found_competitor_car[0].chassi
+    end  
   end  
 end  
 

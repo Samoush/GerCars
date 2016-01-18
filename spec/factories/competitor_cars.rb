@@ -16,6 +16,7 @@
 FactoryGirl.define do
   factory :competitor_car do
     competitor_name { Faker::Name.name } 
+    chassi { Random.rand(111111..999999).to_s }
     auction "MyString"
     sold_date { Time.now.strftime("%d.%m.%Y") }     #evtl. to_s
     car_template { CarTemplate.find(Random.rand(1..4)) }

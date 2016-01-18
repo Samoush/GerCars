@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113174936) do
+ActiveRecord::Schema.define(version: 20160118160201) do
 
   create_table "car_templates", force: :cascade do |t|
     t.string   "brand",          limit: 255
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160113174936) do
     t.text     "sold_car_notices", limit: 65535
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "chassi",           limit: 255
   end
 
   add_index "competitor_cars", ["car_template_id"], name: "index_competitor_cars_on_car_template_id", using: :btree

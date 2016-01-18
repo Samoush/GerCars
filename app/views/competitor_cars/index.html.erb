@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Chassi</th>
       <th>Auktion</th>
       <th>Model</th>
       <th>Verkaufsdatum</th>
@@ -17,6 +18,7 @@
     <% car_template = CarTemplate.find(cc.car_template_id) %>
       <tr>
         <td><%= cc.competitor_name %></td>
+        <td><%= cc.chassi %></td>
         <td><%= cc.auction %></td>
         <td><%= car_template.model %></td>
         <td><%= cc.sold_date.strftime('%d.%m.%Y') %></td>       

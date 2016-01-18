@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'CompetitorCar' do
   let(:competitor_c) { FactoryGirl.create(:competitor_car, competitor_name: 'Edit Test') }
+  
   describe '#new' do
     it 'creates a competitor_car and redirects to index' do
       visit 'competitor_cars/new'
       fill_in 'competitor_car_competitor_name', with: 'Maximilian'
+      fill_in 'competitor_car_chassi', with: '123123'
       fill_in 'competitor_car_auction', with: 'mobile'
       select 'Octavia', from: 'competitor_car_car_template_id'
       select '13', from: 'competitor_car_sold_date_3i'
@@ -16,6 +18,7 @@ RSpec.feature 'CompetitorCar' do
       click_button 'Konkurrenzkauf Bestätigen'
 
       expect(page).to have_content('Das ist mein Beispieltext')
+      expect(page).to have_content('123123')
     end 
   end  
 
@@ -38,6 +41,12 @@ RSpec.feature 'CompetitorCar' do
 
       expect(page).to have_content('Edit Test')
     end   
+  end  
+
+  describe '#search_by_chassi' do
+    it 'searches a competitor_car by chassi' do
+
+    end
   end  
 
 
