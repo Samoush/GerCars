@@ -17,6 +17,7 @@ RSpec.feature 'CompetitorCar' do
 
       click_button 'Konkurrenzkauf Bestätigen'
 
+      expect(page).to have_content('Konkurrenzkauf erfolgreich registriert')
       expect(page).to have_content('Das ist mein Beispieltext')
       expect(page).to have_content('123123')
     end 
@@ -44,9 +45,24 @@ RSpec.feature 'CompetitorCar' do
   end  
 
   describe '#search_by_chassi' do
+    #let (:competitor) { CompetitorCar.find.first }
     it 'searches a competitor_car by chassi' do
+      visit competitor_cars_search_by_chassi_path
+      fill_in 'competitor_car_chassi', with: "#{competitor_c.chassi}"
 
+      click_button 'Konkurrenzkauf Suchen'
+
+      expect(page).to have_content("#{competitor_c.chassi}")
     end
+
+    it 'does not find by chassi' do
+      visit competitor_cars_search_by_chassi_path
+      fill_in 'competitor_car_chassi', with: "#{Random.rand(111111..999999).to_s}"
+
+      click_button 'Konkurrenzkauf Suchen'
+
+      expect(page).to have_content("Die Chassi wurde nicht gefunden")
+    end  
   end  
 
 

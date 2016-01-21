@@ -13,7 +13,7 @@
 #
 
 class CompetitorCarsController < ApplicationController
-  before_action :set_competitor_car, only: [:edit, :update, :destroy]
+  before_action :set_competitor_car, only: [:show, :edit, :update, :destroy]
 
   def index
     @competitor_cars = CompetitorCar.give_the_last_ten            #brauche ich eigentlich nicht, weil schon im model gemacht wird
@@ -24,7 +24,6 @@ class CompetitorCarsController < ApplicationController
   end
 
   def show
-    @competitor_car = CompetitorCar.find(params[:id])
   end 
 
   def edit
@@ -58,6 +57,19 @@ class CompetitorCarsController < ApplicationController
     end
   end  
 
+  def link_to_by_chassi
+    render 'link_to_by_chassi'
+  end
+  
+  def by_chassi
+    @competitor_car = CompetitorCar.find_with_chassi(params[:competitor_car][:chassi])
+    if @competitor_car != nil
+      render 'show'
+    else
+      render 'not_found'
+    end 
+  end  
+
   private
 
   def set_competitor_car
@@ -65,7 +77,7 @@ class CompetitorCarsController < ApplicationController
   end  
 
   def competitor_car_params
-    params.require(:competitor_car).permit(:id, :competitor_name, :auction, :car_template_id, :sold_car_notices, :sold_date, :created_at, :updated_at)
+    params.require(:competitor_car).permit(:id, :competitor_name, :chassi, :auction, :car_template_id, :sold_car_notices, :sold_date, :created_at, :updated_at)
   end  
 end  
 

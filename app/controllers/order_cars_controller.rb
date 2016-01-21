@@ -48,7 +48,7 @@ class OrderCarsController < ApplicationController
 
   def by_chassi    
     if OrderCar.validate_exact_six_digits_for_search_by_chassi_and_chassi_exists(params[:order_car][:chassi])                        
-      @order_car = OrderCar.find_with_chassi(params[:order_car][:chassi])   #.first#OrderCar.find_by_chassi(params[:order_car][:chassi])#.first  
+      @order_car = OrderCar.find_with_chassi(params[:order_car][:chassi])     
       flash[:success]  = 'Fahrzeug gefunden'                              #Farbe ändern
       render 'order_cars/show'
     else

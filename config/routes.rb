@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'order_cars/search/by_chassi' => 'order_cars#link_to_by_chassi'
   get 'order_cars/search/detailed' => 'order_cars#link_to_by_detailes'
 
+  get 'competitor_cars/search/by_chassi' => 'competitor_cars#link_to_by_chassi'
+  post 'competitor_cars/search/by_chassi' => 'competitor_cars#by_chassi'
+
   resources :order_cars
   
   resources :car_templates 

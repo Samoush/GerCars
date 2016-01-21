@@ -51,5 +51,18 @@ RSpec.describe CompetitorCarsController, type: :controller do
         expect(response).to have_http_status(:success)
       end  
     end
-  end   
+  end  
+
+  describe 'GET #search_by_chassi & #found_by_chassi' do
+    before(:each) { get :link_to_by_chassi }
+    
+    it 'renders correctly' do
+      expect(response).to be_success
+      expect(response).to render_template('link_to_by_chassi')
+    end  
+
+    it 'searches, finds and renders correctly' do
+
+    end  
+  end 
 end    
