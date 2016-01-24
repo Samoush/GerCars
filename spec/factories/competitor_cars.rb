@@ -19,7 +19,7 @@ FactoryGirl.define do
     chassi { Random.rand(111111..999999).to_s }
     auction "MyString"
     sold_date { Time.now.strftime("%d.%m.%Y") }     #evtl. to_s
-    car_template { CarTemplate.find(Random.rand(1..4)) }
+    car_template { CarTemplate.first }
     sold_car_notices "... MyText ..."
   end
 end

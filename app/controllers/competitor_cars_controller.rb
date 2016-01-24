@@ -57,7 +57,7 @@ class CompetitorCarsController < ApplicationController
     end
   end  
 
-  def link_to_by_chassi
+  def link_to_by_chassi         #detallierte suche auch
     render 'link_to_by_chassi'
   end
   
@@ -69,6 +69,24 @@ class CompetitorCarsController < ApplicationController
       render 'not_found'
     end 
   end  
+
+  def link_to_by_detailes
+    render 'link_to_by_detailes'
+  end
+  
+  def detailed
+    search_chassi = params[:competitor_car][:chassi]
+    search_car_template_id = params[:competitor_car][:car_template][:car_template_id].to_i
+    @competitor_car = CompetitorCar.find_with_detailes(search_chassi, search_car_template_id)#model
+    if @competitor_car == nil
+      render 'not_found_detailed'
+    elsif @competitor_car.class == CompetitorCar
+      render 'show'
+    else  
+      @competitor_cars = CompetitorCar.where(chassi: search_chassi, car_template_id: search_car_template_id)
+      render 'index'
+    end  
+  end 
 
   private
 

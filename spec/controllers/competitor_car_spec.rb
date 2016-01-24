@@ -56,7 +56,7 @@ RSpec.describe CompetitorCarsController, type: :controller do
   describe 'GET #search_by_chassi & #found_by_chassi' do
     before(:each) { get :link_to_by_chassi }
     
-    it 'renders correctly' do
+    it 'renders successfully' do
       expect(response).to be_success
       expect(response).to render_template('link_to_by_chassi')
     end  
@@ -65,4 +65,13 @@ RSpec.describe CompetitorCarsController, type: :controller do
 
     end  
   end 
+
+  describe 'GET #search_by_detailes' do
+    before(:each) { get :link_to_by_detailes}
+
+    it 'renders successfully' do
+      expect(response).to be_success
+      expect(response).to render_template('link_to_by_detailes')
+    end  
+  end  
 end    

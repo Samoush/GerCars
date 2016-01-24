@@ -14,6 +14,10 @@
 
 require 'rails_helper'
 
+def random_car_template
+  rand(1..10)
+end  
+
 RSpec.describe CompetitorCar, type: :model do
   let(:comp_car) { FactoryGirl.create(:competitor_car) }
   describe 'associations' do
@@ -47,6 +51,7 @@ RSpec.describe CompetitorCar, type: :model do
   end  
 
   describe 'class methods' do
+    let(:competitor) { CompetitorCar.first }
     it 'executes give_the_last_ten and return the last ten created Competitors ordered by sold_date' do
       cc1 = FactoryGirl.create(:competitor_car, competitor_name: 'test1', sold_date: 1.day.ago.end_of_day)     
       cc2 = FactoryGirl.create(:competitor_car, competitor_name: 'test2', sold_date: DateTime.now)
@@ -80,6 +85,20 @@ RSpec.describe CompetitorCar, type: :model do
       #expect(found_two_competitor_cars.size == 2).to be true
       #expect(found_competitor_car[0].chassi).to eq found_two_competitor_cars[0].chassi
       #expect(found_competitor_car[0].chassi).to eq found_two_competitor_cars[1].chassi
+    end  
+
+    it 'searches competitor_car by detailes' do
+      different_car_template = CarTemplate.first.id
+      while different_car_template == competitor.car_template_id   
+        different_car_template = random_car_template
+      end  
+      same_chassi_different_model_competitor = FactoryGirl.create(:competitor_car, chassi: "#{competitor.chassi}", car_template_id: different_car_template)
+
+      found_competitor_car = CompetitorCar.find_with_detailes(same_chassi_different_model_competitor.chassi, same_chassi_different_model_competitor.car_template_id)
+
+      expect(found_competitor_car.chassi).to eq competitor.chassi
+      expect(found_competitor_car.car_template_id).not_to eq competitor.car_template_id
+      expect(found_competitor_car.car_template_id).to eq same_chassi_different_model_competitor.car_template_id
     end  
   end  
 

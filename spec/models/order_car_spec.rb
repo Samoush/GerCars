@@ -60,8 +60,7 @@ RSpec.describe OrderCar, type: :model do
   it 'is created and sorted by created_at in descendant order with most actual date as first element in array' do
     
     order_car = OrderCar.sort_by_created_at
-    #ap order_car
-
+    
     expect(order_car[0].created_at).to be > order_car[order_car.size-1].created_at       #das erste datum im array aktueller als das letzte 
     
     expect(order_car[0].created_at).to be > order_car[(order_car.size-1)/2].created_at

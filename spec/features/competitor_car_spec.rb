@@ -1,5 +1,15 @@
 require 'rails_helper'
 
+def search_car_template(template_id)
+  found_templates = CarTemplate.order("Rand()").first(3)
+  random_template = rand(0..2)
+  if found_templates[random_template].id != template_id
+    found_templates[random_template].id
+  else 
+    search_car_template(template_id)
+  end    
+end  
+
 RSpec.feature 'CompetitorCar' do
   let(:competitor_c) { FactoryGirl.create(:competitor_car, competitor_name: 'Edit Test') }
   
@@ -45,7 +55,6 @@ RSpec.feature 'CompetitorCar' do
   end  
 
   describe '#search_by_chassi' do
-    #let (:competitor) { CompetitorCar.find.first }
     it 'searches a competitor_car by chassi' do
       visit competitor_cars_search_by_chassi_path
       fill_in 'competitor_car_chassi', with: "#{competitor_c.chassi}"
@@ -65,5 +74,32 @@ RSpec.feature 'CompetitorCar' do
     end  
   end  
 
+  describe '#search_by_detailes' do
+    let(:competitor_c2) { FactoryGirl.create(:competitor_car, chassi: competitor_c.chassi, car_template_id: search_car_template(competitor_c.car_template_id)) }
+    it 'searches a competitor_car by detailes' do
+      visit competitor_cars_search_detailed_path
 
+      fill_in 'competitor_car_chassi', with: "#{competitor_c2.chassi}"
+      select "#{CarTemplate.find(competitor_c2.car_template_id).model}", from: 'competitor_car_car_template_car_template_id'
+
+      click_button 'Konkurrenzkauf Suchen'
+
+      expect(page).to have_content("Verkauf")
+      expect(page).to have_content("#{competitor_c2.chassi}")
+      expect(page).to have_content("#{competitor_c2.car_template_id}")
+    end
+    let(:competitor_c3) { FactoryGirl.create(:competitor_car, chassi: competitor_c.chassi, car_template_id: competitor_c2.car_template_id) }
+    it 'searches a competitor_car, finds 2 identical model and chassi - competitor_cars and renders index template' do
+      visit competitor_cars_search_detailed_path
+
+      fill_in 'competitor_car_chassi', with: "#{competitor_c2.chassi}"
+      select "#{CarTemplate.find(competitor_c2.car_template_id).model}", from: 'competitor_car_car_template_car_template_id'
+
+      click_button 'Konkurrenzkauf Suchen'
+
+      expect(page).to have_content("Konkurrenz Käufe")  
+      expect(page).to have_content("#{competitor_c2.chassi}")
+      expect(page).to have_content("#{competitor_c2.car_template_id}")    
+    end  
+  end
 end  

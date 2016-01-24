@@ -37,11 +37,23 @@ class CompetitorCar < ActiveRecord::Base
     #end  
   end 
 
-  private
-
-  def to_competitor
-
+  def self.find_with_detailes(chassi, car_template_id)
+    comp_car_ar = []
+    CompetitorCar.all.each do |comp|
+      if comp.chassi == chassi && comp.car_template_id == car_template_id
+        comp_car_ar << comp
+      end  
+    end  
+    if comp_car_ar.size == 1
+      comp_car_ar[0]
+    elsif comp_car_ar.size > 1
+      comp_car_ar
+    else  
+      nil
+    end    
   end  
+
+  private
 
   def exactly_six_digits?
     if chassi.length == 6
