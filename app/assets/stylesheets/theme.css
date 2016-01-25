@@ -54,7 +54,7 @@ color: 505050 !important;
 
 
 .title {
-  text-align: left;
+  text-align: center;
   color: #8B0000;
   font-size: 130%;
 }
@@ -70,3 +70,8 @@ color: 505050 !important;
 .body {
   text-align: center;
 }
+
+.link_under_table {
+  text-align: center; 
+}
+

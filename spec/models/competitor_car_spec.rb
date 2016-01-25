@@ -44,10 +44,11 @@ RSpec.describe CompetitorCar, type: :model do
 #    expect(comp_car).to validate_presence_of :chassi 
 #
 #  end  
-
-  it 'should have a valid Factory and CompetitorCar should be valid' do
-    expect(FactoryGirl.build(:competitor_car)).to be_valid
-  end  
+  context 'valid factory' do
+    it 'should have a valid Factory and CompetitorCar should be valid' do
+      expect(FactoryGirl.build(:competitor_car)).to be_valid
+    end
+  end    
 
   describe 'class methods' do
     let(:competitor) { CompetitorCar.first }

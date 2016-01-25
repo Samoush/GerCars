@@ -52,7 +52,7 @@ class CompetitorCarsController < ApplicationController
   def destroy 
     @competitor_car.destroy
     respond_to do |format|
-      format.html { redirect_to competitor_cars_url, notice: 'Konkurrenzkauf gelöscht' }
+      format.html { redirect_to competitor_cars_path, notice: 'Konkurrenzkauf gelöscht' }
       format.json { head :no_content }
     end
   end  
