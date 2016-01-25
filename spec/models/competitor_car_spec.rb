@@ -19,7 +19,6 @@ def random_car_template
 end  
 
 RSpec.describe CompetitorCar, type: :model do
-  let(:comp_car) { FactoryGirl.create(:competitor_car) }
   describe 'associations' do
     it { is_expected.to belong_to(:car_template) }
   end  

@@ -14,7 +14,7 @@
 
 class OrderCar < ActiveRecord::Base
   belongs_to :car_template    #, foreign_key: 'car_template_id' #, dependent: :destroy
-  belongs_to :customer        #, foreign_key: 'customer_id' #, dependent: :destroy
+  belongs_to :customer     #, foreign_key: 'customer_id' #, dependent: :destroy
 
   validates :chassi, presence: true
   validates :country, presence: true

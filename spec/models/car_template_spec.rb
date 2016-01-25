@@ -13,8 +13,14 @@
 require 'rails_helper'
 
 RSpec.describe CarTemplate, type: :model do
-
-  it 'should have a valid factory and CarTemplate should be valid' do
-    expect(FactoryGirl.create(:car_template)).to be_valid        #build is alias for new 
-  end
+  describe 'associations' do
+    it { should have_many(:competitor_cars).dependent(:destroy) }
+    it { should have_many(:order_cars).dependent(:destroy) }
+  end  
+  
+  context 'valid factory' do
+    it 'should have a valid factory and CarTemplate should be valid' do
+      expect(FactoryGirl.create(:car_template)).to be_valid        #build is alias for new 
+    end
+  end  
 end

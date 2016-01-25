@@ -9,7 +9,7 @@
 #
 
 class Customer < ActiveRecord::Base
-  has_many :orders, dependent: :destroy
+  has_many :order_cars, dependent: :destroy   #:orders statt :order_cars?
 
   validates :name, presence: true, uniqueness: true
   validate :set_capital_letter

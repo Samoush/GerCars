@@ -11,7 +11,8 @@
 #
 
 class CarTemplate < ActiveRecord::Base
-  has_many :orders, dependent: :destroy
+  has_many :order_cars, dependent: :destroy
+  has_many :competitor_cars, dependent: :destroy
 
   validates :brand, presence: true
   validates :model, presence: true, uniqueness: true
