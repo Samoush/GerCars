@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'weather' => 'weather_datas_controller#create'
 
+  get 'backup' => 'backup#do_backup'
+
   resources :order_cars
   
   resources :car_templates 

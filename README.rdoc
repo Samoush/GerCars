@@ -7,6 +7,8 @@ Die GerCars Plattform bietet
 # Anwendern gekaufte Fahrzeuge nach Chassi und detallierter in der DB zu suchen;
 # Anwendern die Möglichkeit der Analyse ihrer Fahrzeug-Käufe.
 
+# Die Anwednung soll Lokal über das Intranet laufen, nicht über einen Server.
+
 ## Benötigte Libraries
 
 *imagemagick
