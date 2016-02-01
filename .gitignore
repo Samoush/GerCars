@@ -14,6 +14,7 @@
 .rspec
 /config/config.yml
 /config/database.yml
+/config/secrets.yml
 /spec/tmp/*
 /gems
 Gemfile

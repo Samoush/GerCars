@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'competitor_cars/search/detailed' => 'competitor_cars#link_to_by_detailes'
   post 'competitor_cars/search/detailed' => 'competitor_cars#detailed'
 
+  get 'weather' => 'weather_datas_controller#create'
+
   resources :order_cars
   
   resources :car_templates 

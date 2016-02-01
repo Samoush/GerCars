@@ -1,8 +1,13 @@
+require 'weather_forecast'
+
 class OrderCarsController < ApplicationController
   before_action :set_order_car, only: [:show, :edit, :update, :destroy]
 
   def index
-    @order_cars = OrderCar.all              
+    @order_cars = OrderCar.all  
+    
+    #forecast = WeatherForecast.new
+    #@forecast_data = forecast.show         
   end  
 
   def show 

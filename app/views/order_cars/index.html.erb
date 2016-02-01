@@ -1,6 +1,10 @@
 
 <h1 class='title'>Letzte Verkäufe</h1>  
 
+<% if @forecast_data != nil %>
+  <p class='weather'><%= "#{@forecast_data.temparature}, #{@forecast_data.description}, #{@forecast_data.icon}" %></p>
+<% end %>
+
 <table class='table'>
   <thead>
     <tr>
@@ -34,7 +38,11 @@
 </table>      
 </br>
 
-<ul class='link_under_table'><%= link_to 'Auto Verkauf registrieren', new_order_car_path %></ul>  
+<ul class='link_under_table'><%= link_to 'Auto Verkauf registrieren', new_order_car_path %></ul> 
+
+
+
+
 
 
 
