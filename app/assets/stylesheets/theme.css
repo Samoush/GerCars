@@ -59,6 +59,12 @@ color: 505050 !important;
   font-size: 130%;
 }
 
+.backup_title {
+  text-align: left;
+  color: #8B0000;
+  font-size: 130%;
+}
+
 .field {
   text-align: center;
 }

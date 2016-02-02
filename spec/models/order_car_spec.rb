@@ -25,34 +25,6 @@ RSpec.describe OrderCar, type: :model do
 
   #end  
 
-  #it 'is dependent (destroy) from car_template and customer' do
-
-  #  car_template = FactoryGirl.create(:car_template, brand: 'VW', model: 'Touran')
-  #  car_template2 = FactoryGirl.create(:car_template, brand: 'VW', model: 'Phaeton')
-  #  customer = FactoryGirl.create(:customer)
-
-  #  order_car = FactoryGirl.create(:order_car, chassi: "235422", customer: customer, car_template: car_template)
-  #  order_car2 = FactoryGirl.create(:order_car, chassi: "235422", customer: customer, car_template: car_template2)
-    
-  #  CarTemplate.find(car_template.id).tap do |find_and_delete_cartemplate|
-  #    ap find_and_delete_cartemplate
-  #    find_and_delete_cartemplate.destroy
-  #  end  
-  #  Customer.find(customer.id).tap do |find_and_delete_customer|
-  #    ap find_and_delete_customer
-  #    find_and_delete_customer.destroy
-  #  end  
-
-  #  find_order_cartemplate = []
-  #  find_orderc << OrderCar.where(car_template: car_template).find_each
-
-  #  find_order_customer = []
-  #  find_order_customer << OrderCar.where(customer: customer).find_each
-
-  #  expect(find_order_cartemplate.count).to eq 0
-  #  expect(find_customer.count).to eq 0
-
-  #end  
   context 'valid factory' do
     it 'should have a valid factory and OrderCar should be valid' do
       expect(FactoryGirl.create(:order_car)).to be_valid        #build is alias for new 

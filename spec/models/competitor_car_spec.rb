@@ -14,9 +14,16 @@
 
 require 'rails_helper'
 
-def random_car_template
-  rand(1..10)
-end  
+def random_car_template(ct_id)
+  random = rand(1..10)
+  if ct_id == CarTemplate.first.id 
+    if CarTemplate.where(id: random).empty? || random == ct_id
+      random_car_template(ct_id)
+    else
+      random
+    end
+  end      
+end 
 
 RSpec.describe CompetitorCar, type: :model do
   describe 'associations' do
@@ -31,9 +38,10 @@ RSpec.describe CompetitorCar, type: :model do
 #  end  
 
 # => wtf was geht da ab?!
-
+#describe 'validation' do
+#  let(:comp_car) { FactoryGirl.create(:competitor_car) }
 #  it 'validates succesfully' do                 
-#
+
 #    ap comp_car
 #    expect(comp_car).to validate_presence_of :competitor_name 
 #    ap comp_car
@@ -42,8 +50,9 @@ RSpec.describe CompetitorCar, type: :model do
 #    expect(comp_car).to validate_presence_of :car_template_id 
 #    ap comp_car
 #    expect(comp_car).to validate_presence_of :chassi 
-#
 #  end  
+#end
+
   context 'valid factory' do
     it 'should have a valid Factory and CompetitorCar should be valid' do
       expect(FactoryGirl.build(:competitor_car)).to be_valid
@@ -77,22 +86,12 @@ RSpec.describe CompetitorCar, type: :model do
       expect(found_competitor_car.chassi).to eq competitor_car.chassi
     end  
 
-    it 'filters the right competitor_car, searched by chassi - there is only one competitor with that chassi' do
-      #competitor_car = CompetitorCar.first
-      #FactoryGirl.create(:competitor_car, chassi: "#{found_competitor_car.chassi}")
-      #found_two_competitor_cars = CompetitorCar.find_with_chassi(found_competitor_car[0].chassi)
-
-      #expect(found_two_competitor_cars.size == 2).to be true
-      #expect(found_competitor_car[0].chassi).to eq found_two_competitor_cars[0].chassi
-      #expect(found_competitor_car[0].chassi).to eq found_two_competitor_cars[1].chassi
-    end  
-
     it 'searches competitor_car by detailes' do
       different_car_template = CarTemplate.first.id
-      while different_car_template == competitor.car_template_id   
-        different_car_template = random_car_template
-      end  
-      same_chassi_different_model_competitor = FactoryGirl.create(:competitor_car, chassi: "#{competitor.chassi}", car_template_id: different_car_template)
+
+      same_chassi_different_model_competitor = FactoryGirl.create(:competitor_car, chassi: "#{competitor.chassi}", car_template_id: random_car_template(competitor.id))
+      
+      expect(same_chassi_different_model_competitor.car_template_id).to_not eq competitor.car_template_id
 
       found_competitor_car = CompetitorCar.find_with_detailes(same_chassi_different_model_competitor.chassi, same_chassi_different_model_competitor.car_template_id)
 
