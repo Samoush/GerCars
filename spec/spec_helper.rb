@@ -16,9 +16,22 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'capybara/rspec'
+
+#require 'rails/all'                                                 #muss vor capybara required werden!
+
+
+#require 'capybara/rspec'
+#require 'capybara/rails'
+
+#Capybara.app_host = "http://localhost:3000"
+#Capybara.server_host = "localhost"
+#Capybara.server_port = "3000"
 
 RSpec.configure do |config|
+
+  #damit selenium den safari als browser nutzt und weiss wo er ihn findet
+#  Selenium::WebDriver::Firefox::Binary.path = "/opt/homebrew-cask/Caskroom/firefox/44.0.0/Firefox.app/Contents/MacOS/firefox"
+
 
   #config.include FactoryGirl::Syntax::Methods
 

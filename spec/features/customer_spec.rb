@@ -4,7 +4,7 @@ RSpec.feature 'Customer' do
   let(:cust) { FactoryGirl.create(:customer, name: 'Edit Test') }
   describe 'GET #new' do
     it 'creates a Customer' do
-      visit 'customers/new'
+      visit new_customer_path
       fill_in 'customer_name', with: 'Marcus'
       click_button('Kunden Bestätigen')
 

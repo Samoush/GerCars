@@ -6,7 +6,7 @@ let (:oc) { OrderCar.first }
 
   describe '#new' do
     it "creates a new order_car" do
-      visit 'order_cars/new'
+      visit new_order_car_path
       fill_in 'order_car_chassi', with: '231442'
       fill_in 'order_car_bought_by', with: 'MUC'
       select 'Deutschland', from: 'order_car_country'
@@ -21,7 +21,7 @@ let (:oc) { OrderCar.first }
   describe '#searches order_cars' do
     it 'searches for specific order_car by chassi' do
 
-      visit 'order_cars/search/by_chassi'
+      visit order_cars_search_by_chassi_path
       fill_in 'order_car_chassi', with: '123456'
       click_button('Verkauf Suchen')
 
@@ -31,7 +31,7 @@ let (:oc) { OrderCar.first }
 
     it 'searches for specific order_car by chassi and model' do
 
-      visit 'order_cars/search/detailed'
+      visit order_cars_search_detailed_path
       fill_in 'order_car_chassi', with: '123456'
       select 'Octavia', from: 'order_car_car_template_car_template_id'
       click_button 'Verkauf Suchen'

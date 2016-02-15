@@ -24,7 +24,7 @@ class OrderCar < ActiveRecord::Base
   validate :unqiue_chassi_in_model?
 
   def self.sort_by_created_at
-    order_car = OrderCar.all.sort_by{ |ord| ord.created_at }.reverse
+    order_car = OrderCar.all.sort_by{ |ord| ord.created_at }.reverse.take(10)
   end  
 
   def self.find_with_chassi(chassi)          
@@ -74,6 +74,14 @@ class OrderCar < ActiveRecord::Base
     else
       false
     end    
+  end
+
+  def self.get_records_with_given_attributes(attributes)        #analyze
+    array_of_attributes = attributes[:order_cars] 
+    array_of_attributes.delete_if { |_,value| value == nil }
+
+    OrderCar.where(array_of_attributes).tap do |found_records|
+    end  
   end
 
   private

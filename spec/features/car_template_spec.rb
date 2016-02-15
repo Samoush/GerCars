@@ -5,7 +5,7 @@ RSpec.feature 'CarTemplate' do
   
   describe '#new' do
     it 'creates a CarTemplate' do
-      visit 'car_templates/new'
+      visit new_car_template_path
       fill_in 'car_template_brand', with: 'VW'
       fill_in 'car_template_model', with: 'Touareg'
       fill_in 'car_template_general_chassi', with: 'WVWGJK9991Z'

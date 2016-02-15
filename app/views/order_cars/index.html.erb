@@ -2,7 +2,8 @@
 <h1 class='title'>Letzte Verkäufe</h1>  
 
 <% if @forecast_data != nil %>
-  <p class='weather'><%= "#{@forecast_data.temparature}, #{@forecast_data.description}, #{@forecast_data.icon}" %></p>
+  <%-##{@forecast_data.icon} icon muss richtig abgespeichert werden (wird als ascii-8bit übergeben, transformationen sind nicht valide)-%>
+  <p class='weather'><%= "#{@forecast_data.temparature} #{@forecast_data.description}" %></p>
 <% end %>
 
 <table class='table'>
@@ -20,7 +21,7 @@
   
   <tbody>  
     <% order_c = OrderCar.sort_by_created_at %>
-    <% order_c.take(10).each do |order_car| %>  
+    <% order_c.each do |order_car| %>  
       <% car_template = CarTemplate.find(order_car.car_template_id) %>
       <% customer = Customer.find(order_car.customer_id) %>
       <tr>

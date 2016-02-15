@@ -6,8 +6,8 @@ class OrderCarsController < ApplicationController
   def index
     @order_cars = OrderCar.all  
     
-    #forecast = WeatherForecast.new
-    #@forecast_data = forecast.show         
+    forecast = WeatherForecast.new
+    @forecast_data = forecast.show         
   end  
 
   def show 

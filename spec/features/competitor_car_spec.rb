@@ -15,7 +15,7 @@ RSpec.feature 'CompetitorCar' do
   
   describe '#new' do
     it 'creates a competitor_car and redirects to index' do
-      visit 'competitor_cars/new'
+      visit new_competitor_car_path
       fill_in 'competitor_car_competitor_name', with: 'Maximilian'
       fill_in 'competitor_car_chassi', with: '123123'
       fill_in 'competitor_car_auction', with: 'mobile'
