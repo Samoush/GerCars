@@ -42,6 +42,21 @@ RSpec.describe OrderCarsController, type: :controller do
     end  
   end
 
+  describe 'GET #link_to_filter and #filter' do
+    it 'should be successful' do
+      get :link_to_filter
+      expect(response).to render_template(:filter)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'should be successful' do
+      post :filter, order_cars: { car_template: { car_template_id: 1 }, customer: { customer_id: "" }, country: "Spanien" }
+
+      expect(response).to render_template('order_cars/filtered')
+      expect(response).to have_http_status(200)
+    end  
+  end  
+
   describe 'POST #by_chassi and #by_detail' do
     it 'renders not_found template if search by chassi fails' do          
       post :by_chassi, order_car: { chassi: '122' } 

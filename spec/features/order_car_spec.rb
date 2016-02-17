@@ -41,6 +41,19 @@ let (:oc) { OrderCar.first }
     end  
   end
 
+  describe '#filter order_cars' do
+    it 'analyses sold order_cars by given attributes' do
+      visit order_cars_filter_path
+      select 'Octavia', from: 'order_cars_car_template_car_template_id'
+      #select 'Samer', from: 'order_cars_customer_customer_id'
+      select 'Spanien', from: 'order_cars_country'
+
+      click_button 'Analysieren'
+
+      expect(page).to have_content('Gefilterte Verkäufe')
+    end  
+  end  
+
 
 #  describe '#edit' do
 #    it 'edits a order_car and redirects to index' do

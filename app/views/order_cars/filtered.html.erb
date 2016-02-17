@@ -1,10 +1,4 @@
-
-<h1 class='title'>Letzte Verkäufe</h1>  
-
-<% if @forecast_data != nil %>
-  <%-##{@forecast_data.icon} icon muss richtig abgespeichert werden (wird als ascii-8bit übergeben, transformationen sind nicht valide)-%>
-  <p class='weather'><%= "#{@forecast_data.temparature} #{@forecast_data.description}" %> <%= image_tag("/images/icons/#{@forecast_data.icon}.png") %></p>
-<% end %>
+<h1 class='title'>Gefilterte Verkäufe</h1>
 
 <table class='table'>
   <thead>
@@ -20,7 +14,7 @@
   </thead>
   
   <tbody>  
-    <% order_c = OrderCar.sort_by_created_at %>
+    <% order_c = @order_cars %>
     <% order_c.each do |order_car| %>  
       <% car_template = CarTemplate.find(order_car.car_template_id) %>
       <% customer = Customer.find(order_car.customer_id) %>
@@ -39,13 +33,6 @@
 </table>      
 </br>
 
-<ul class='link_under_table'><%= link_to 'Auto Verkauf registrieren', new_order_car_path %></ul> 
-
-
-
-
-
-
-
+<ul class='link_under_table'><%= link_to 'Nochmals Analysieren/Filtern?', order_cars_filter_path %></ul> 
 
 

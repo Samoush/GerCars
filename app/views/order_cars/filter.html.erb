@@ -1,0 +1,11 @@
+<h1 class="title">Analyse Verkaufter Fahrzeuge</h1>
+<%= simple_form_for :order_cars do |f| %>
+  <%= f.simple_fields_for :car_template do |template_form| %>
+    <%= template_form.collection_select(:car_template_id, CarTemplate.all, :id, :model, prompt: 'Bitte wählen Sie ein Fahrzeugmodell') %>
+  <% end %>
+  <%= f.simple_fields_for :customer do |template_form| %>
+    <%= template_form.collection_select(:customer_id, Customer.all, :id, :name, prompt: 'Bitte wählen Sie einen Kundennamen') %>
+  <% end %>
+  <%= f.select :country, options_for_select([["Spanien", "Spanien"], ["Italien", "Italien"], ["Tschechien", "Tschechien"], ["Polen", "Polen"], ["Deutschland", "Deutschland"]]) %>
+  <%= f.button :submit, 'Analysieren' %>
+<% end %>  

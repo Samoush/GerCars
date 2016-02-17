@@ -76,11 +76,14 @@ class OrderCar < ActiveRecord::Base
     end    
   end
 
-  def self.get_records_with_given_attributes(attributes)        #analyze
-    array_of_attributes = attributes[:order_cars] 
-    array_of_attributes.delete_if { |_,value| value == nil }
+  def self.get_records_with_given_attributes(attributes)     #filter
+    hash_of_attributes = Hash.new 
 
-    OrderCar.where(array_of_attributes).tap do |found_records|
+    hash_of_attributes[:car_template_id] = attributes["car_template"]["car_template_id"].to_i if attributes["car_template"]["car_template_id"].to_i != 0
+    hash_of_attributes[:customer_id] = attributes["customer"]["customer_id"].to_i if attributes["customer"]["customer_id"].to_i != 0 
+    hash_of_attributes[:country] = attributes["country"]
+
+    OrderCar.where(hash_of_attributes).tap do |found_records|
     end  
   end
 

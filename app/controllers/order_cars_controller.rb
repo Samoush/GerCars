@@ -7,7 +7,8 @@ class OrderCarsController < ApplicationController
     @order_cars = OrderCar.all  
     
     forecast = WeatherForecast.new
-    @forecast_data = forecast.show         
+    @forecast_data = forecast.show 
+    #ap @forecast_data.icon        
   end  
 
   def show 
@@ -78,6 +79,15 @@ class OrderCarsController < ApplicationController
       #render 'order_cars/link_to_by_detailes.html.erb'
       render 'order_cars/not_found_detailed.html.erb'
     end  
+  end  
+
+  def link_to_filter
+    render 'order_cars/filter'
+  end  
+
+  def filter
+    @order_cars = OrderCar.get_records_with_given_attributes(params[:order_cars])
+    render 'order_cars/filtered'
   end  
 
   private

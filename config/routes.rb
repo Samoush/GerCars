@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get 'backup' => 'backup#do_backup'
 
+  get 'order_cars/filter' => 'order_cars#link_to_filter'
+  post 'order_cars/filter' => 'order_cars#filter'
+
   resources :order_cars
   
   resources :car_templates 

@@ -16,7 +16,7 @@ class WeatherForecast
   def get_data
     #options = "id=#{Rails.application.secrets.city_id}&lang=#{Rails.application.secrets.lang}&units=#{Rails.application.secrets.units}&appid=#{Rails.application.secrets.api_key}"
     #ap options 
-    icon = ""
+    #icon = ""
     options = { query: {
         id: Rails.application.secrets.city_id,                     #id der stadt
         lang: Rails.application.secrets.lang,                      #damit in deutsch
@@ -29,21 +29,20 @@ class WeatherForecast
     WeatherData.new.tap do |w|
       w.temparature = [response['main']['temp'], '°' ].join()
       w.description = response['weather'][0]['description']
-
-      icon = response['weather'][0]['icon']
+      w.icon = response['weather'][0]['icon']
       
-      uploader = WeatherUploader.new
-      uploader.download! icon_url(icon)          # encoding: ASCII-8BIT
-      uploader.cache!
+      #uploader = WeatherUploader.new
+      #uploader.download! icon_url(icon)          # encoding: ASCII-8BIT
+      #uploader.cache!
       #ap uploader
       #w.icon = uploader.file.read().force_encoding('ISO-8859-1').mb_chars.tidy_bytes#.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')#.force_encoding("UTF-8")
       #ap w.icon.encoding
     end  
   end  
 
-  def icon_url(icon)
-    return [ 'http://openweathermap.org/img/w/', icon, '.png' ].join().encode('UTF-8')
-  end  
+  #def icon_url(icon)
+  #  return [ 'http://openweathermap.org/img/w/', icon, '.png' ].join().encode('UTF-8')
+  #end  
 
 end
 

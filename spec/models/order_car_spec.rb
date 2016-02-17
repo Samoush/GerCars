@@ -102,11 +102,10 @@ RSpec.describe OrderCar, type: :model do
       3.times do
         FactoryGirl.create(:order_car, car_template: car_template, customer: customer)
       end  
-      
-      given_attributes = { order_cars: { car_template_id: car_template.id, customer_id: customer.id, country: nil, bought_by: nil }}
-      filtered_records = OrderCar.get_records_with_given_attributes(given_attributes)
+     
+      filtered_records = OrderCar.get_records_with_given_attributes("car_template" => { "car_template_id" => car_template.id }, "customer" => { "customer_id" => customer.id }, "country" => "Spanien")
 
-      right_records = OrderCar.where(car_template_id: car_template.id, customer_id: customer.id)
+      right_records = OrderCar.where(car_template_id: car_template.id, customer_id: customer.id, country: "Spanien")
 
       expect(filtered_records).to eq right_records
     end  
